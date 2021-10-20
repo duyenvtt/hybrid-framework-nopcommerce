@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nopcommerce">
-  <test name="Run on Firefox">
+  <test name="Run on Chrome">
     <classes>
-      <class name="com.nopcommerce.user.Level_02_Apply_BasePage_I"/>
+      <class name="com.nopcommerce.user.Level_03_Page_Object_02"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -17,7 +17,7 @@ import commons.BasePage;
 import pageObjects.HomePageObject;
 import pageObjects.RegisterPageObject;
 
-public class Level_03_Page_Object extends BasePage {
+public class Level_03_Page_Object_01 extends BasePage {
 	private WebDriver driver;
 	private String projectPath= System.getProperty("user.dir");
 	private String firstName, lastName, emailAddress, password;
@@ -30,7 +30,6 @@ public class Level_03_Page_Object extends BasePage {
 		driver = new ChromeDriver();
 		System.out.println("Driver at class test:"+driver.toString());
 		homePage=new HomePageObject(driver);
-		registerPage=new RegisterPageObject(driver);
 		
 		firstName="DuyenQC";
 		lastName="Vu";
@@ -41,11 +40,17 @@ public class Level_03_Page_Object extends BasePage {
 	}
 	
 	@Test
-	public void TC_01_Register_Empty_Data() {
+	public void Register_01_Empty_Data() {
+		System.out.println("Register_01 - Step 01: Click to Register link");
 		homePage.clickToRegisterLink();	
-		registerPage.clickToRegisterButton();		
-		registerPage.getErrorMessageAtFirstnameTextbox();
 		
+		//Click Register link qua trang Register nen can khoi tao tai day
+		registerPage=new RegisterPageObject(driver);
+		
+		System.out.println("Register_01 - Step 02: Click to Register button");
+		registerPage.clickToRegisterButton();		
+		
+		System.out.println("Register_01 - Step 03: Verify error message displayed");
 		Assert.assertEquals(registerPage.getErrorMessageAtFirstnameTextbox(), "First name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtLastnameTextbox(), "Last name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Email is required.");
@@ -54,22 +59,33 @@ public class Level_03_Page_Object extends BasePage {
 	}
 	
 	@Test
-	public void TC_02_Register_Invalid_Email() {
+	public void Register_02_Invalid_Email() {
+		System.out.println("Register_02 - Step 01: Click to Register link");
 		homePage.clickToRegisterLink();
+		
+		//Click Register link qua trang Register nen can khoi tao tai day
+		registerPage=new RegisterPageObject(driver);
+		
+		System.out.println("Register_02 - Step 02: Input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox("InvalidEmail");
 		registerPage.inputToPasswordTextbox(password);
 		registerPage.inputToConfirmPasswordTextbox(password);
 		
+		System.out.println("Register_02 - Step 03: Click to Register button");
 		registerPage.clickToRegisterButton();
-
+		
+		System.out.println("Register_02 - Step 04: Verify error message displayed");
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Wrong email");
 	}
 	
 	@Test
-	public void TC_03_Register_Success() {
+	public void Register_03_Success() {
 		homePage.clickToRegisterLink();
+		
+		//Click Register link qua trang Register nen can khoi tao tai day
+		registerPage=new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -83,8 +99,11 @@ public class Level_03_Page_Object extends BasePage {
 	}
 	
 	@Test
-	public void TC_04_Register_Existing_Email() {
+	public void Register_04_Existing_Email() {
 		homePage.clickToRegisterLink();
+		
+		//Click Register link qua trang Register nen can khoi tao tai day
+		registerPage=new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -98,8 +117,11 @@ public class Level_03_Page_Object extends BasePage {
 	}
 	
 	@Test
-	public void TC_05_Register_Password_Less_Than_6_Chars() {
+	public void Register_05_Password_Less_Than_6_Chars() {
 		homePage.clickToRegisterLink();
+		
+		//Click Register link qua trang Register nen can khoi tao tai day
+		registerPage=new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -113,8 +135,11 @@ public class Level_03_Page_Object extends BasePage {
 	}
 	
 	@Test
-	public void TC_06_Invalid_Confirm_Password() {
+	public void Register_06_Invalid_Confirm_Password() {
 		homePage.clickToRegisterLink();
+		
+		//Click Register link qua trang Register nen can khoi tao tai day
+		registerPage=new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
