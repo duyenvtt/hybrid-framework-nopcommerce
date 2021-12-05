@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nopcommerce">
-  <test name="Run on Chrome">
-    <classes>
-      <class name="com.nopcommerce.user.Level_03_Page_Object_02"/>
-    </classes>
-  </test> <!-- Test -->
+
+	<test name="Run on firefox">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.nopcommerce.user.Level_08_Switch_Role" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
 </suite> <!-- Suite -->

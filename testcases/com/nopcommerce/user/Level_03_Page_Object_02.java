@@ -14,15 +14,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import commons.BasePage;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 public class Level_03_Page_Object_02 extends BasePage {
 	private WebDriver driver;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
 
 	private String projectPath = System.getProperty("user.dir");
 	private String invalidEmail, notFoundEmail, invalidPassword;
@@ -43,13 +43,13 @@ public class Level_03_Page_Object_02 extends BasePage {
 		validPassword="123456";
 		invalidPassword="invalidPass";
 		
-		homePage=new HomePageObject(driver);
+		homePage=new UserHomePageObject(driver);
 		
 		System.out.println("Login Precondition: Register member successfully");
-		homePage.clickToRegisterLink();
+		homePage.openRegisterPage();
 		
 		//Click Register link mo ra trang register
-		registerPage=new RegisterPageObject(driver);
+		registerPage=new UserRegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -61,16 +61,16 @@ public class Level_03_Page_Object_02 extends BasePage {
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 		registerPage.clickToLogoutLink();
 		//Click Logout ve mat bussiness quay ve trang Home nen khoi tao trang Home
-		homePage=new HomePageObject(driver);
+		homePage=new UserHomePageObject(driver);
 	}
 
 	@Test
 	public void Login_01_Empty_Data() {
 		System.out.println("Login 01 - Step 01: Click to open Login");
-		homePage.clickToLoginLink();
+		homePage.openLoginPage();
 		
 		//Khoi tao trang login
-		loginPage=new LoginPageObject(driver);
+		loginPage=new UserLoginPageObject(driver);
 
 		System.out.println("Login 01 - Step 02: Click to Login Button");
 		loginPage.clickToLoginButton();
@@ -81,10 +81,10 @@ public class Level_03_Page_Object_02 extends BasePage {
 
 	public void Login_02_Invalid_Email() {
 		System.out.println("Login 02 - Step 01: Click to open Login");
-		homePage.clickToLoginLink();
+		homePage.openLoginPage();
 		
 		//Khoi tao trang login
-		loginPage=new LoginPageObject(driver);
+		loginPage=new UserLoginPageObject(driver);
 
 		System.out.println("Login 02 - Step 02: Input data");
 		loginPage.inputToEmailTextbox(invalidEmail);
@@ -99,10 +99,10 @@ public class Level_03_Page_Object_02 extends BasePage {
 	@Test
 	public void Login_03_Email_Not_Found() {
 		System.out.println("Login 03 - Step 01: Click to open Login");
-		homePage.clickToLoginLink();
+		homePage.openLoginPage();
 		
 		//Khoi tao trang login
-		loginPage=new LoginPageObject(driver);
+		loginPage=new UserLoginPageObject(driver);
 
 		System.out.println("Login 03 - Step 02: Input data");
 		loginPage.inputToEmailTextbox(notFoundEmail);
@@ -119,10 +119,10 @@ public class Level_03_Page_Object_02 extends BasePage {
 	@Test
 	public void Login_04_Valid_Email_Empty_Password() {
 		System.out.println("Login 04 - Step 01: Click to open Login");
-		homePage.clickToLoginLink();
+		homePage.openLoginPage();
 		
 		//Khoi tao trang login
-		loginPage=new LoginPageObject(driver);
+		loginPage=new UserLoginPageObject(driver);
 
 		System.out.println("Login 04 - Step 02: Input data");
 		loginPage.inputToEmailTextbox(existingEmail);
@@ -138,10 +138,10 @@ public class Level_03_Page_Object_02 extends BasePage {
 	@Test
 	public void Login_05_Valid_Email_Invalid_Password() {
 		System.out.println("Login 05 - Step 01: Click to open Login");
-		homePage.clickToLoginLink();
+		homePage.openLoginPage();
 		
 		//Khoi tao trang login
-		loginPage=new LoginPageObject(driver);
+		loginPage=new UserLoginPageObject(driver);
 
 		System.out.println("Login 05 - Step 02: Input data");
 		loginPage.inputToEmailTextbox(existingEmail);
@@ -158,10 +158,10 @@ public class Level_03_Page_Object_02 extends BasePage {
 	@Test
 	public void Login_06_Valid_Empty_Valid_Password() {
 		System.out.println("Login 06 - Step 01: Click to open Login");
-		homePage.clickToLoginLink();
+		homePage.openLoginPage();
 		
 		//Khoi tao trang login
-		loginPage=new LoginPageObject(driver);
+		loginPage=new UserLoginPageObject(driver);
 
 		System.out.println("Login 06 - Step 02: Input data");
 		loginPage.inputToEmailTextbox(existingEmail);
@@ -171,7 +171,7 @@ public class Level_03_Page_Object_02 extends BasePage {
 		loginPage.clickToLoginButton();
 		
 		//Login thanh cong qua trang homepage nen khoi tao Homepage len
-		homePage=new HomePageObject(driver);
+		homePage=new UserHomePageObject(driver);
 
 		System.out.println("Login 06 - Step 04: Verify login successfully");
 		Assert.assertTrue(homePage.isMyAccountDisplayed());
